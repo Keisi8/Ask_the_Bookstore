@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "approvals": {
+    "8163d0df871e7c91": {
+      "question": "What is the total revenue for each month, ordered chronologically? Show the month as YYYY-MM and the revenue rounded to 2 decimals.",
+      "kpi": "Revenue trend",
+      "sql": "SELECT strftime('%Y-%m', o.order_date) AS month,\n       ROUND(SUM(oi.quantity * oi.unit_price), 2) AS total_revenue\nFROM orders o\nJOIN order_items oi ON o.order_id = oi.order_id\nGROUP BY month\nORDER BY month\nLIMIT 100",
+      "approved_at": "2026-08-07T01:21:18"
+    },
+    "aafcd59c0d5238e4": {
+      "question": "What is the average order value for each sales channel? Average order value means total revenue divided by the number of distinct orders. Include the order count for each channel.",
+      "kpi": "Average order value by channel",
+      "sql": "SELECT\n    o.channel,\n    COUNT(DISTINCT o.order_id) AS order_count,\n    ROUND(SUM(oi.quantity * oi.unit_price) * 1.0 / COUNT(DISTINCT o.order_id), 2) AS avg_order_value\nFROM orders o\nJOIN order_items oi ON oi.order_id = o.order_id\nGROUP BY o.channel\nLIMIT 100",
+      "approved_at": "2026-08-07T01:22:18"
+    },
+    "73ac71e6313a5164": {
+      "question": "Which 10 books generated the most revenue, and what share of total revenue does each represent as a percentage?",
+      "kpi": "Top titles by revenue",
+      "sql": "SELECT\n    b.book_id,\n    b.title,\n    ROUND(SUM(oi.quantity * oi.unit_price), 2) AS total_revenue,\n    ROUND(\n        100.0 * SUM(oi.quantity * oi.unit_price) /\n        (SELECT SUM(oi2.quantity * oi2.unit_price) FROM order_items oi2),\n        2\n    ) AS revenue_share_pct\nFROM order_items oi\nJOIN books b ON b.book_id = oi.book_id\nGROUP BY b.book_id, b.title\nORDER BY total_revenue DESC\nLIMIT 10",
+      "approved_at": "2026-08-07T01:22:26"
+    },
+    "206d576da79b5329": {
+      "question": "How many customers placed more than one order, how many placed exactly one, and what percentage of customers are repeat buyers?",
+      "kpi": "Repeat purchase rate",
+      "sql": "WITH order_counts AS (\n    SELECT customer_id, COUNT(*) AS num_orders\n    FROM orders\n    GROUP BY customer_id\n)\nSELECT\n    SUM(CASE WHEN num_orders > 1 THEN 1 ELSE 0 END) AS repeat_customers,\n    SUM(CASE WHEN num_orders = 1 THEN 1 ELSE 0 END) AS one_time_customers,\n    ROUND(100.0 * SUM(CASE WHEN num_orders > 1 THEN 1 ELSE 0 END) / COUNT(*), 2) AS repeat_customer_percentage\nFROM order_counts\nLIMIT 100",
+      "approved_at": "2026-08-07T01:22:38"
+    },
+    "11808eb5df4bed21": {
+      "question": "Which 10 books sold the fewest copies overall? Show title, author, genre, total copies sold and total revenue, ordered by copies ascending. Include books that have never been ordered.",
+      "kpi": "Slow movers",
+      "sql": "SELECT b.title,\n       b.author,\n       b.genre,\n       COALESCE(SUM(oi.quantity), 0) AS total_copies_sold,\n       ROUND(COALESCE(SUM(oi.quantity * oi.unit_price), 0), 2) AS total_revenue\nFROM books b\nLEFT JOIN order_items oi ON oi.book_id = b.book_id\nGROUP BY b.book_id, b.title, b.author, b.genre\nORDER BY total_copies_sold ASC\nLIMIT 10",
+      "approved_at": "2026-08-07T01:24:09"
+    }
+  }
+}

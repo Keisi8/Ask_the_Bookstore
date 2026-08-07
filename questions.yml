@@ -1,0 +1,35 @@
+# The questions a commercial analyst would otherwise re-run by hand every week.
+# Edit freely: anything listed here is picked up by `python main.py --batch`.
+#
+# Each entry needs a `kpi` (short label used for filenames and headings) and a
+# `question` (plain English, sent to the agent exactly as written).
+
+title: Weekly Commercial Review
+
+questions:
+  - kpi: Revenue trend
+    question: >
+      What is the total revenue for each month, ordered chronologically?
+      Show the month as YYYY-MM and the revenue rounded to 2 decimals.
+
+  - kpi: Average order value by channel
+    question: >
+      What is the average order value for each sales channel? Average order
+      value means total revenue divided by the number of distinct orders.
+      Include the order count for each channel.
+
+  - kpi: Top titles by revenue
+    question: >
+      Which 10 books generated the most revenue, and what share of total
+      revenue does each represent as a percentage?
+
+  - kpi: Repeat purchase rate
+    question: >
+      How many customers placed more than one order, how many placed exactly
+      one, and what percentage of customers are repeat buyers?
+
+  - kpi: Slow movers
+    question: >
+      Which 10 books sold the fewest copies overall? Show title, author,
+      genre, total copies sold and total revenue, ordered by copies ascending.
+      Include books that have never been ordered.

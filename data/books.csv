@@ -1,0 +1,41 @@
+book_id,title,author,genre,price,published_year
+1,The Salt Path Home,Nadia Ferrante,Literary Fiction,16.99,2019
+2,Winter in Trieste,Nadia Ferrante,Literary Fiction,15.50,2022
+3,The Cartographer's Wife,Nadia Ferrante,Literary Fiction,18.00,2024
+4,Deep Water Signals,Marcus Oyelaran,Science Fiction,14.99,2021
+5,The Kepler Drift,Marcus Oyelaran,Science Fiction,17.25,2023
+6,Quiet Machines,Marcus Oyelaran,Science Fiction,19.99,2025
+7,A Grammar of Weather,Ines Kovac,Poetry,12.00,2020
+8,Nightjar,Ines Kovac,Poetry,11.50,2023
+9,The Copper Ledger,Tomas Brandt,Mystery,13.99,2018
+10,Hollow Season,Tomas Brandt,Mystery,14.50,2021
+11,The Vestry Murders,Tomas Brandt,Mystery,15.99,2024
+12,"Bread, Salt, Time",Amara Diallo,Cooking,28.00,2022
+13,The Slow Kitchen,Amara Diallo,Cooking,32.50,2025
+14,Fermented,Amara Diallo,Cooking,24.99,2019
+15,Empire of Rope,Henrik Solberg,History,26.00,2020
+16,The Long Thaw,Henrik Solberg,History,29.99,2023
+17,Cities Made of Debt,Henrik Solberg,History,27.50,2025
+18,Small Hours,Beatriz Lameda,Literary Fiction,15.99,2021
+19,The Understudy,Beatriz Lameda,Literary Fiction,16.50,2024
+20,Signal Fires,Priya Raghunathan,Science Fiction,16.00,2022
+21,The Lagrange Job,Priya Raghunathan,Science Fiction,18.50,2025
+22,Root and Branch,Eleanor Fitzgibbon,Nature Writing,21.00,2019
+23,The Chalk Hills,Eleanor Fitzgibbon,Nature Writing,22.50,2023
+24,Tidelines,Eleanor Fitzgibbon,Nature Writing,23.99,2025
+25,How to Read a Bridge,Yusuf Karim,Architecture,34.00,2021
+26,Concrete Utopias,Yusuf Karim,Architecture,38.50,2024
+27,The Paper Detective,Lucy Wen,Children's,9.99,2020
+28,The Paper Detective Returns,Lucy Wen,Children's,9.99,2022
+29,Moth Hotel,Lucy Wen,Children's,10.50,2024
+30,A Short Walk Through Logic,Dieter Falk,Philosophy,19.00,2018
+31,On Not Deciding,Dieter Falk,Philosophy,20.50,2023
+32,The Glass Orchard,Sofia Marchetti,Mystery,14.99,2022
+33,Last Train to Ostia,Sofia Marchetti,Mystery,16.25,2025
+34,Wildflower Atlas,Greta Lindqvist,Nature Writing,25.00,2021
+35,The Beekeeper's Year,Greta Lindqvist,Nature Writing,19.99,2024
+36,Numbers at Night,Rashid Al-Amin,Popular Science,17.99,2020
+37,The Entropy Garden,Rashid Al-Amin,Popular Science,21.50,2023
+38,Everything Is a Wave,Rashid Al-Amin,Popular Science,23.00,2025
+39,Kitchen Latin,Amara Diallo,Cooking,26.50,2024
+40,The Silent Quarter,Tomas Brandt,Mystery,13.50,2019

@@ -1,0 +1,9 @@
+langgraph>=0.2.60
+anthropic>=0.40.0
+python-dotenv>=1.0.0
+keyring>=25.0.0
+pyyaml>=6.0
+
+# Only needed if you set LLM_PROVIDER=openai (this also covers OpenAI-compatible
+# gateways such as LiteLLM, OpenRouter, vLLM or an internal proxy):
+# openai>=1.40.0
