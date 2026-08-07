@@ -24,38 +24,50 @@ blocked query, a rejection, an edit, then an approval.
 
 ## Run it for real
 
-Copy `.env.example` to `.env` and set one of:
-
-| Provider | Configuration |
-|---|---|
-| Anthropic | `ANTHROPIC_API_KEY=sk-ant-...` |
-| OpenAI | `LLM_PROVIDER=openai` + `OPENAI_API_KEY=...` |
-| Gateway (LiteLLM, vLLM, Azure proxy) | `LLM_PROVIDER=openai` + `LLM_BASE_URL=...` + `LLM_API_KEY=...` |
-| Bedrock / Vertex | `LLM_PROVIDER=bedrock` or `vertex` |
+You do not need to put a key in a file. Just run it:
 
 ```bash
-python -m agent.llm --check    # confirms provider, model and connection
-python main.py                 # menu: weekly report, or a single question
+python main.py
 ```
 
-A full five-KPI report costs a few cents.
-
-**On the key.** `main.py` needs one; `seed.py` and `test_flow.py` don't. If no
-key is configured it prompts once per run via `getpass` — nothing echoes to
-the screen, nothing lands in shell history. It then offers to store the key in
-your OS keychain (macOS Keychain, Windows Credential Manager, Linux Secret
-Service), after which you're never asked again:
+The first time, it asks for your API key with `getpass` — nothing echoes to
+the screen, nothing lands in shell history — and offers to store it in your OS
+keychain (macOS Keychain, Windows Credential Manager, Linux Secret Service).
+Say yes and you are never asked again.
 
 ```bash
-python setup_key.py            # store it
+python setup_key.py            # store the key up front instead
 python setup_key.py --show     # check what's stored (masked)
 python setup_key.py --delete   # remove it
 ```
 
-Resolution order is environment variable, then keychain, then prompt. The key
-is never written into this folder on any of those paths and never enters the
-graph state, so it can't reach a checkpoint, an output file, or a commit.
-`.env` is gitignored if you prefer that route.
+The key is resolved in this order: environment variable, then keychain, then
+prompt. It is never written into this folder on any of those paths and never
+enters the graph state, so it cannot reach a checkpoint, an output file, or a
+commit.
+
+**Using something other than Anthropic?** Copy `.env.example` to `.env` (it is
+gitignored) and set the provider — the key itself can still live in the
+keychain:
+
+| Provider | Configuration |
+|---|---|
+| Anthropic | nothing needed — this is the default |
+| OpenAI | `LLM_PROVIDER=openai` |
+| Gateway (LiteLLM, vLLM, Azure proxy) | `LLM_PROVIDER=openai` + `LLM_BASE_URL=...` |
+| Bedrock / Vertex | `LLM_PROVIDER=bedrock` or `vertex` |
+
+```bash
+python -m agent.llm --check    # confirms provider, model and connection
+```
+
+A full five-KPI report costs a few cents.
+
+**Note on the committed approvals.** `approvals.json` ships with the five KPI
+queries already approved, so a batch run replays them instead of asking. Any
+new question you ask goes through the full generate-and-approve flow. Run
+`python main.py --forget` to clear the approvals and review everything
+yourself.
 
 ---
 
